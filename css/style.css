@@ -1,0 +1,281 @@
+/* Basic reset for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Make width/height easier to control */
+}
+
+/* Global body style */
+body {
+    font-family: Arial, sans-serif; /* Set default font */
+    line-height: 1.6; /* Improve text readability */
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark gray text */
+}
+
+/* Main container to center content */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto; /* Center horizontally */
+    overflow: hidden; /* Clear floating elements */
+}
+
+/* Navigation bar */
+.navbar {
+    background-color: #222222; /* Dark background */
+    padding: 10px 0;
+}
+
+/* Logo on the left */
+.logo {
+    float: left; /* Move logo to left side */
+}
+
+.logo img {
+    height: 40px;
+    display: block; /* Remove extra space under image */
+}
+
+/* Navigation menu on the right */
+.nav-links {
+    list-style-type: none; /* Remove bullet points */
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+/* Make nav items horizontal */
+.nav-links li {
+    float: left;
+}
+
+/* Style for navigation links */
+.nav-links li a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none; /* Remove underline */
+    padding: 12px 16px;
+    font-size: 15px;
+    border: none;
+    outline: none;
+}
+
+/* Hover effect for nav links */
+.nav-links li a:hover {
+    background-color: #555555;
+}
+
+/* Hero section (main banner) */
+.hero-section {
+    background-image: url('../images/background.jpg'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    min-height: 85vh; 
+    padding-bottom: 60px;
+    position: relative; /* Needed for overlay */
+}
+
+/* Dark overlay on hero image */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Slight dark layer */
+}
+
+/* Text content inside hero */
+.hero-content {
+    position: relative;
+    z-index: 1; /* Make sure it is above overlay */
+    max-width: 600px;
+    margin-left: 5%; /* Move content to left side */
+    padding-top: 150px; /* Push content down */
+    color: #ffffff;
+}
+
+/* Hero title */
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+/* Hero description text */
+.hero-content p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+/* Button container */
+.button-group {
+    display: inline-block;
+}
+
+/* Base button style */
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid;
+    margin-right: 15px;
+}
+
+/* Primary button */
+.btn-primary {
+    background-color: #ffffff;
+    color: #222222;
+    border-color: #ffffff;
+}
+
+/* Hover effect for primary button */
+.btn-primary:hover {
+    background-color: #dddddd;
+}
+
+/* Outline button */
+.btn-outline {
+    background-color: transparent;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* Hover effect for outline button */
+.btn-outline:hover {
+    background-color: #ffffff;
+    color: #222222;
+}
+
+/* About section */
+.about-section {
+    background-color: #f9f9f9; /* Light background */
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* About title */
+.about-section h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #111111;
+}
+
+/* About text */
+.about-section p {
+    font-size: 16px;
+    color: #666666;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Featured cars section */
+.featured-cars {
+    background-color: #ffffff;
+    padding: 60px 0;
+}
+
+/* Section title */
+.featured-cars h2 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #111111;
+}
+
+/* Car grid container */
+.car-grid {
+    width: 100%;
+}
+
+/* Each car card */
+.car-item {
+    float: left; /* Make cards in a row */
+    width: 25%; /* 4 columns layout */
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+}
+
+/* Car image */
+.car-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Keep image ratio */
+    margin-bottom: 15px;
+}
+
+/* Car title */
+.car-item h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222222;
+}
+
+/* Car price */
+.car-item p {
+    font-size: 16px;
+    color: #666666;
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    background-color: #222222;
+    padding: 20px 0;
+}
+
+/*------------------------------------------------------------------------------------------------*/
+
+/*ipad-shupin*/
+@media screen and (max-width: 768px) {
+
+    .logo, .nav-links {
+        float: none;
+        text-align: center;
+    }
+
+    .nav-links li {
+        float: none;
+        display: block;
+    }
+    
+    .hero-section h1 { font-size: 32px; }
+    .hero-section p { font-size: 16px; }
+    .about-section h2 { font-size: 24px; }
+    
+    .btn {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .car-item {
+        width: 50%;
+    }
+}
+
+/*iphone*/
+@media screen and (max-width: 480px) {
+
+    .car-item {
+        width: 100%;
+    }
+    
+    .hero-section {
+        height: auto; 
+        min-height: 70vh; 
+        padding-bottom: 50px; 
+    }
+    
+    .hero-content {
+        padding-top: 80px; 
+    }
+}

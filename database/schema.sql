@@ -1,0 +1,1 @@
+-- Write uniformly after the table creation statement
