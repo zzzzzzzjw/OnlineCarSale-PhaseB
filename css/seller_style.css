@@ -1,0 +1,164 @@
+/*----------------------------------------------------------------------------------------------------------------*/
+
+.inner-container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.clear-page {
+    clear: both;
+}
+
+.hengxiangzhanshi-section {
+    padding: 60px 0 200px 0;
+    background-image: url("../images/sellerpgae-car.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.hengxiangzhanshi-text {
+
+    width: 100%;
+    margin-top: 0;
+}
+
+.hengxiangzhanshi-bigtitle {
+    font-size: 60px;
+    margin: 20px 0;
+    color: white;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+
+.car-box {
+    /*Switched from 'float' to 'inline-block'.*/ 
+    /*I learned that this allows the car boxes to be perfectly centered from CSDN*/
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    margin: 20px 1%;
+    padding: 2%;
+    background-color: white;
+    text-align: left;
+}
+
+.car-box-title {
+    margin: 0;
+    font-size: 22px;
+}
+
+.car-explaination {
+    font-size: 14px;
+    color: black;
+    height: 40px;
+}
+
+.car-box-picture {
+    margin: 30px 0;
+    height: 120px;
+    overflow: hidden;
+}
+.car-box-img {
+    width: 100%;
+    height: auto;
+}
+
+.price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.outline-btn {
+    /*Switched from 'float' to 'inline-block'.*/ 
+    /*I learned that this allows the car boxes to be perfectly centered from CSDN*/
+    display: inline-block; 
+    border: 1px solid black; 
+    padding: 8px 25px; 
+    text-decoration: none; 
+    color: black; 
+    font-size: 14px; 
+    font-weight: bold;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+
+.action-buttons-area {
+    text-align: center; 
+    margin-bottom: 50px;
+}
+
+.black-action-btn {
+    /*Switched from 'float' to 'inline-block'.*/ 
+    /*I learned that this allows the car boxes to be perfectly centered from CSDN*/
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 15px 65px;
+    margin: 0 40px; 
+    text-decoration: none; 
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid black;
+}
+
+.black-action-btn:hover {
+    background-color: white; 
+    color: black;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+
+/*ipad-hengpin*/
+@media screen and (max-width: 1200px) {
+    .inner-container {
+        width: 100%;
+        padding: 0 20px;
+        box-sizing: border-box; 
+    }
+}
+
+/*ipad-shupin*/
+@media screen and (max-width: 768px) {
+    .car-box {
+        width: 44%; 
+        margin: 20px 2.5%;
+    }
+    .hengxiangzhanshi-bigtitle {
+        font-size: 48px; 
+    }
+}
+
+/*iphone*/
+@media screen and (max-width: 480px) {
+    .car-box {
+        width: 94%;
+        margin: 20px 3%;
+    }
+    
+    .black-action-btn {
+        display: block; 
+        width: 80%;
+        margin: 15px auto;
+        box-sizing: border-box;
+    }
+    
+    .hengxiangzhanshi-section {
+        padding: 40px 0 100px 0;
+    }
+    
+    .hengxiangzhanshi-bigtitle {
+        font-size: 36px;
+    }
+    
+    .brand-logo-area, ul.main-menu-links {
+        float: none;
+        text-align: center;
+        margin: 0;
+        padding: 10px 0;
+    }
+    ul.main-menu-links li {
+        display: inline-block;
+        float: none;
+    }
+}
