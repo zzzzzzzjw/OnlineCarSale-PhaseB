@@ -1,3 +1,39 @@
+<?php
+session_start();
+require_once '../config/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $phone = $_POST["phone"];
+    $email = $_POST["email"];
+    $username = $_POST["username"];
+    $password_hash = $_POST["password_hash"];
+
+    $password_hashed = password_hash($password_hash, PASSWORD_DEFAULT);   //To protect the user's privacy
+
+    $insert = "INSERT INTO seller (username, password_hash, email, phone ) 
+            VALUES ('$username', '$password_hashed', '$email', '$phone' )";
+
+    $result = mysqli_query($connection, $insert);
+
+    if ($result) {
+        echo "<script>
+                alert('Registration successful! Please log in with your new account.');
+                window.location.href = 'login.php';
+              </script>";
+        exit();
+    } 
+    else {
+        $error_explain = mysqli_error($connection);
+        echo "<script>
+                alert('Database Error: " . $error_explain . "');
+              </script>";
+    }
+
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html>
     <head>
