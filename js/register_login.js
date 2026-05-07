@@ -47,7 +47,7 @@ function checkForm() {
 
     if (!userPassPatt.test(password_hash)) {
         alert("Password is invalid. Must consist of at least 6 alphanumeric characters.");
-        document.getElementById("password").select();
+        document.getElementById("password_hash").select();
         return false;
     }
 
