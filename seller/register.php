@@ -7,11 +7,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $username = $_POST["username"];
     $password_hash = $_POST["password_hash"];
+    $full_name = $_POST["full_name"];
+    $address = $_POST["address"];
 
     $password_hashed = password_hash($password_hash, PASSWORD_DEFAULT);   //To protect the user's privacy
 
-    $insert = "INSERT INTO seller (username, password_hash, email, phone ) 
-            VALUES ('$username', '$password_hashed', '$email', '$phone' )";
+    $insert = "INSERT INTO seller (username, password_hash, full_name, email, address, phone ) 
+            VALUES ('$username', '$password_hashed', '$full_name', '$email', '$address', '$phone' )";
 
     $result = mysqli_query($connection, $insert);
 
@@ -67,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="input-field-group">
                         <label> Name: </label>
-                        <input type="text" name="name" id="name" class="box-input-field">
+                        <input type="text" name="full_name" id="full_name" class="box-input-field">
                     </div>
 
                     <div class="input-field-group">
