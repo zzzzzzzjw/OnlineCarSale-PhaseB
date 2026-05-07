@@ -1,0 +1,100 @@
+body {
+    background-image: url("../images/car13.jpg"); 
+    background-size: cover; 
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    margin: 0;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+/*The detailed box style*/
+.full-screen-container {
+    width: 100%;
+    margin-top: 100px; 
+}
+
+.right-explain-text {
+    float: right;            
+    width: 40%;             
+    margin-right: 10%;       
+    color: white;           
+}
+
+.left-gray-box {
+    float: left;           
+    width: 400px;           
+    margin-left: 6%; 
+    margin-bottom: 100px;   
+    
+    background-color: lightgray; 
+    
+    padding: 30px;  
+    border: 3px solid black;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+/*The dtailed word style in box*/
+.box-main-title {
+    text-align: center;           
+    background-color: black;      
+    color: white;                 
+    padding: 10px;                
+    margin-top: 0;                
+}
+
+.input-field-group {
+    margin-bottom: 20px; 
+}
+
+.input-field-group label {
+    display: block; 
+    margin-bottom: 10px; 
+    font-weight: bold; 
+    color: black;
+}
+
+.box-input-field {
+    width: 90%;                   
+    padding: 10px;                
+    border: 1px solid gray;       
+    font-family: Arial; 
+    font-size: 12pt;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------*/
+
+/*ipad-hengpin*/
+@media screen and (max-width: 1200px) {
+    .right-explain-text {
+        width: 45%; 
+        margin-right: 5%;
+    }
+    .left-gray-box {
+        margin-left: 5%;
+    }
+}
+
+/*ipad-shupin + iphone*/
+@media screen and (max-width: 768px) {
+    .full-screen-container {
+        margin-top: 50px; 
+    }
+    
+    .left-gray-box, .right-explain-text {
+        float: none; 
+        width: 90%; 
+        margin: 20px auto; 
+        box-sizing: border-box;
+    }
+    
+    .right-explain-text {
+        text-align: center; 
+    }
+    
+    .box-input-field {
+        width: 100%; 
+        box-sizing: border-box;
+    }
+}
