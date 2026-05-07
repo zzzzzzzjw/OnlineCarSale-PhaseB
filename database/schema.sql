@@ -31,9 +31,10 @@ CREATE TABLE cars (
     price DECIMAL(10,2) NOT NULL,
     description TEXT,
     image_url VARCHAR(255),
-    color VARCHAR(30),
+    colour VARCHAR(30),        
+    location VARCHAR(100) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (seller_id) REFERENCES sellers(seller_id),
     INDEX idx_car_search (model, year),
     INDEX idx_seller_id (seller_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
