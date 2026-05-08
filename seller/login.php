@@ -1,3 +1,49 @@
+<?php
+session_start();
+require_once '../config/db_connect.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password_hash = $_POST["password_hash"];
+
+    $sql = "select * from sellers where username ='$username'";
+    if (mysqli_query($connection, $sql)) {
+        $result = mysqli_query($connection, $sql);
+    }
+    else {
+        die("Error! " . mysqli_error($connection));
+    }
+
+
+
+    if ($row = mysqli_fetch_array($result)) {
+         if (password_verify($password_hash, $row['password_hash'])) {
+            $_SESSION['username'] = $username;
+
+            echo "<script>
+                    alert('Login successful! Welcome, " . $username . "');
+                    window.location.href = '../index.html'; 
+                  </script>";
+            exit();
+        } 
+        else {
+            echo "<script>
+                    alert('Incorrect password. Please try again.');
+                  </script>";
+        }
+    }
+    else {
+        echo "<script>
+                alert('Sorry, account not found. Please register first.');
+              </script>";
+    }
+
+
+
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +80,7 @@
             <div class="left-gray-box">
                 <h2 class="box-main-title"> Seller Login </h2>
                 
-                <form id="LoginForm" style="margin-top: 20px;">
+                <form id="LoginForm" action="login.php" method="POST" onsubmit="return checkLogin();" style="margin-top: 20px;">
 
                     <div class="input-field-group">
                         <label> Username: </label>

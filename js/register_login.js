@@ -57,26 +57,26 @@ function checkForm() {
 
 
 
+
 //Login
-let loginForm = document.getElementById('LoginForm');
-if(loginForm) {
-    loginForm.addEventListener('submit', function(event) {
-        event.preventDefault(); 
-        let loginUser = document.querySelector('input[name="username"]').value;
-        let loginPass = document.querySelector('input[name="password"]').value;
-        let savedData = localStorage.getItem('autoverve_account');
-        
-        if (savedData) {
-            let savedAccount = JSON.parse(savedData);
-            if (loginUser === savedAccount.username && loginPass === savedAccount.password) {
-                localStorage.setItem('isLoggedIn', 'true');
-                alert("Login successful! Welcome, Seller!.");
-                window.location.href = "seller.html"; 
-            } else {
-                alert("Incorrect username or password. Please try again!");
-            }
-        } else {
-            alert("Account not found. Please register first!");
-        }
-    });
+function checkLogin() {
+
+    var username = document.getElementById("username").value;
+    var password_hash = document.getElementById("password_hash").value;
+
+    var userPassPatt = /^[a-zA-Z0-9]{6,}$/;
+    
+    if (!userPassPatt.test(username)) {
+        alert("Username is invalid. Must consist of at least 6 alphanumeric characters.");
+        document.getElementById("username").select();
+        return false;
+    }
+
+    if (!userPassPatt.test(password_hash)) {
+        alert("Password is invalid. Must consist of at least 6 alphanumeric characters.");
+        document.getElementById("password_hash").select();
+        return false;
+    }
+
+    return true; 
 }
