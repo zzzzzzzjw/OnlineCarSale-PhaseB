@@ -51,11 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <img src="../images/logo.png" alt="AutoMarket Logo">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../index.html"> Home </a></li>
-                    <li><a href="../buyer/search.html"> Search Cars </a></li>
-                    <li><a href="register.html"> Register </a></li>
-                    <li><a href="login.html"> Login </a></li>
-                    <li><a href="add-car.html"> Add Car </a></li>
+                    <li><a href="../index.php"> Home </a></li>
+                    <li><a href="../buyer/search.php"> Search Cars </a></li>
+                    <li><a href="register.php"> Register </a></li>
+                    <li><a href="login.php"> Login </a></li>
+                    <li><a href="add-car.php"> Add Car </a></li>
                 </ul>
             </div>
         </div>
