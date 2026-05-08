@@ -17,7 +17,7 @@ function checkForm() {
     
     if (!namePatt.test(full_name)) {
         alert("Name is invalid. Only alphabetical letters and space allowed.");
-        document.getElementById("name").select();
+        document.getElementById("full_name").select();
         return false;
     }
 
