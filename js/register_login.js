@@ -1,7 +1,7 @@
 //Registration
 function checkForm() {
 
-    var name = document.getElementById("name").value;
+    var full_name = document.getElementById("full_name").value;
     var address = document.getElementById("address").value;
     var phone = document.getElementById("phone").value;
     var email = document.getElementById("email").value;
@@ -15,7 +15,7 @@ function checkForm() {
     var emailPatt = /^[a-zA-Z0-9]+@[a-zA-Z]+\.(com|cn)$/;
     var userPassPatt = /^[a-zA-Z0-9]{6,}$/;
     
-    if (!namePatt.test(name)) {
+    if (!namePatt.test(full_name)) {
         alert("Name is invalid. Only alphabetical letters and space allowed.");
         document.getElementById("name").select();
         return false;
