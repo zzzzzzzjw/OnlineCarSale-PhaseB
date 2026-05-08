@@ -3,8 +3,8 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Seller Login </title>
-        <link rel="stylesheet" type="text/css" href="../../css/style.css" />
-        <link rel="stylesheet" type="text/css" href="../../css/box_style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel="stylesheet" type="text/css" href="../css/box_style.css" />
     </head>
     <body>
 
@@ -16,9 +16,9 @@
                 <ul class="nav-links">
                     <li><a href="../index.html"> Home </a></li>
                     <li><a href="../buyer/search.html"> Search Cars </a></li>
-                    <li><a href="../seller/register.html"> Register </a></li>
-                    <li><a href="../seller/login.html"> Login </a></li>
-                    <li><a href="../seller/add-car.html"> Add Car </a></li>
+                    <li><a href="register.html"> Register </a></li>
+                    <li><a href="login.html"> Login </a></li>
+                    <li><a href="add-car.html"> Add Car </a></li>
                 </ul>
             </div>
         </div>
