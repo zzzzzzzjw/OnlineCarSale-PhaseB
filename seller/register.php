@@ -31,9 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </script>";
     }
 
-}
+}                                                                         //Creat 4 user account: HiReza HiXifei HiZiyi HiJingwen
 ?>
-
 
 
 <!DOCTYPE html>
