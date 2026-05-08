@@ -1,9 +1,35 @@
+<?php
+session_start();
+require_once '../config/db_connect.php';
+
+if (!isset($_SESSION['username'])) {
+    echo "<script>
+            alert('Please login first!'); window.location.href='login.php';
+          </script>";
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+$sql = "SELECT cars.* FROM cars 
+        JOIN sellers ON cars.seller_id = sellers.id 
+        WHERE sellers.username = '$username'
+        ORDER BY cars.created_at DESC";
+
+$result = mysqli_query($connection, $sql);
+
+if (!$result) {
+    die("Error !" . mysqli_error($connection));
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title> Seller Page </title>
-        <script src="../js/judge_login.js">  </script>
         <link rel="stylesheet" type="text/css" href="../css/seller_style.css">
         <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
