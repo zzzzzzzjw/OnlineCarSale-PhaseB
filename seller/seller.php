@@ -12,7 +12,7 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 
 $sql = "SELECT cars.* FROM cars 
-        JOIN sellers ON cars.seller_id = sellers.id 
+        JOIN sellers ON cars.seller_id = sellers.seller_id
         WHERE sellers.username = '$username'
         ORDER BY cars.created_at DESC";
 
@@ -42,11 +42,11 @@ if (!$result) {
                 </div>
 
                 <ul class="nav-links">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="../buyer/search.html">Search Cars</a></li>
-                    <li><a href="../seller/register.html">Register</a></li>
-                    <li><a href="../seller/login.html">Login</a></li>
-                    <li><a href="../seller/add-car.html">Add Car</a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../buyer/search.php">Search Cars</a></li>
+                    <li><a href="register.php">Register</a></li>
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="add-car.php">Add Car</a></li>
                 </ul>
             </div>
         </div>
@@ -55,8 +55,8 @@ if (!$result) {
             <div class="inner-container">
 
                 <div class="hengxiangzhanshi-text">
-                    <h1 class="hengxiangzhanshi-bigtitle"> Hello Seller! </h1>
-                    <p style="color: white;"> Here is part of your cars' information. </p>
+                    <h1 class="hengxiangzhanshi-bigtitle"> Hello<?php echo $_SESSION['username']; ?>! </h1>
+                    <p style="color: white;"> Here is your personalized car-room. </p>
                 </div>
 
                 <div class="clear-page"> </div>
@@ -66,114 +66,66 @@ if (!$result) {
         <div class="inner-container" style="margin-top: 50px; margin-bottom: 50px; text-align: center;">
 
             <div class="action-buttons-area">
-
-                <a href="add-car.html" class="black-action-btn"> Add Car </a>
-
+                <a href="add-car.php" class="black-action-btn"> Add Car </a>
             </div>
 
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
+            
+            <?php 
+            if (mysqli_num_rows($result) > 0) {
+                
+                while ($car = mysqli_fetch_assoc($result)) {
+                    $car_id = $car['car_id'];
+                    $car_url = "detail.php?id=" . $car_id;
+            ?>
+                    <a href="<?php echo $car_url; ?>" class="car-box" style="text-decoration: none; color: inherit;">
+                        
+                    <h3 class="car-box-title"> 
+                        <?php 
+                        echo $car['brand'] . ' ' . $car['model']; 
+                        ?> 
+                    </h3> 
 
-                <div class="car-box-picture">
-                    <img src="../images/car5.jpg" alt="Kicks Play" class="car-box-img">
+                    <p class="car-explaination"> 
+                        <?php 
+                        echo mb_substr($car['description'], 0, 30) . '...'; 
+                        ?> 
+                    </p>
+
+                    <div class="car-box-picture">
+                        
+                        <?php if (!empty($car['image_url'])) { 
+                        ?>
+                                <img src="<?php echo htmlspecialchars($car['image_url']); ?>" alt="Car Image" class="car-box-img">
+                        <?php 
+                              } 
+                              else { 
+                        ?>
+                                <p> Sorry there is no Image ! </p>
+                        <?php 
+                              } 
+                        ?>
+
+                    </div>
+
+                    <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
+                    <p class="price"> $<?php echo number_format($car['price'], 2); ?> </p>
+                    <p class="outline-btn"> On Sale </p>
+
+                    </a>
+            <?php 
+                } 
+            } 
+            else { 
+            ?>
+
+                <div class="empty-car-room">
+                    <h2 class="empty-title"> Your car-room is currently empty. </h2>
+                    <p class="empty-text"> You haven't listed any cars yet. Click the "Add Car" button above to start your business! </p>
                 </div>
 
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car6.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car7.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car8.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car9.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car10.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car11.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
-
-            <div class="car-box">
-                <h3 class="car-box-title"> Car Name </h3>
-                <p class="car-explaination"> A detailed description about the car </p>
-
-                <div class="car-box-picture">
-                    <img src="../images/car12.jpg" alt="Kicks Play" class="car-box-img">
-                </div>
-
-                <p style="font-size: 12px; color: gray; margin-bottom: 5px;"> The Price </p>
-                <p class="price"> $99,999 </p>
-                <p class="outline-btn"> On Sale </p>
-            </div>
+            <?php 
+            } 
+            ?>
 
             <div class="clear-page"> </div>
         </div>
