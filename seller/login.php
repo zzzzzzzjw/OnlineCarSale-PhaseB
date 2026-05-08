@@ -25,6 +25,7 @@
         
         <div class="full-screen-container">
             
+        
             <div class="right-explain-text">
                 <h1 style="font-size: 45pt;"> Welcome to AutoVerve! </h1>
                 <p style="font-size: 25pt;"> We will provide you with the highest quality car-selling service. </p>
@@ -37,22 +38,22 @@
 
                     <div class="input-field-group">
                         <label> Username: </label>
-                        <input type="text" name="username" required pattern="^[a-zA-Z0-9]{6,}$" title="Must consist of at least 6 alphanumeric characters" class="box-input-field">
+                        <input type="text" name="username" id="username" class="box-input-field">
                     </div>
 
                     <div class="input-field-group">
                         <label> Password: </label>
-                        <input type="password" name="password" required pattern="^[a-zA-Z0-9]{6,}$" title="Must consist of at least 6 alphanumeric characters" class="box-input-field">
+                        <input type="password" name="password_hash" id="password_hash" class="box-input-field">
                     </div>
 
                     <div class="input-field-group">
                         <li><a href="../seller/register.html"> Don't have an account yet? </a></li>
                     </div>
 
-                    <input type="submit" value="Login" style="background-color: black; color: white; padding: 15px 50px;">
+                    <input type="submit" value="Login Now !" style="background-color: black; color: white; padding: 15px 50px;">
                 </form>
-
             </div>
+
 
         </div>
 
