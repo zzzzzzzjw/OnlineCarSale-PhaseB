@@ -27,11 +27,9 @@ CREATE TABLE sellers (
 CREATE TABLE cars (
     car_id INT AUTO_INCREMENT PRIMARY KEY,
     seller_id INT NOT NULL,
-    brand VARCHAR(50) NOT NULL,
     model VARCHAR(50) NOT NULL,
     year YEAR NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    description TEXT,
     image_url VARCHAR(255),
     colour VARCHAR(30),        
     location VARCHAR(100) NOT NULL,
