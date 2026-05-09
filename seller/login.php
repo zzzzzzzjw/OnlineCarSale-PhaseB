@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             echo "<script>
                     alert('Login successful! Welcome, " . $username . "');
-                    window.location.href = '../index.html'; 
+                    window.location.href = '../index.php'; 
                   </script>";
             exit();
         } 
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="input-field-group">
-                        <li><a href="../seller/register.html"> Don't have an account yet? </a></li>
+                        <li><a href="../seller/register.php"> Don't have an account yet? </a></li>
                     </div>
 
                     <input type="submit" value="Login Now !" style="background-color: black; color: white; padding: 15px 50px;">
