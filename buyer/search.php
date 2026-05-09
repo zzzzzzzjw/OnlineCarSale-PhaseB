@@ -1,3 +1,58 @@
+<?php
+require_once '../config/db_connect.php';
+
+
+if (isset($_GET['model']) || isset($_GET['year']) || isset($_GET['colour']) || isset($_GET['price'])) {
+    $model = $_GET['model'] ?? '';
+    $year = $_GET['year'] ?? '';
+    $colour = $_GET['colour'] ?? '';
+    $price = $_GET['price'] ?? '';
+
+    $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
+    $params = [];
+    $types = "";
+
+    if ($model != "") {
+        $sql .= " AND model LIKE ?";
+        $params[] = "%$model%";
+        $types .= "s";
+    }
+    if ($year != "") {
+        $sql .= " AND year = ?";
+        $params[] = $year;
+        $types .= "s";
+    }
+    if ($colour != "") {
+        $sql .= " AND colour LIKE ?";
+        $params[] = "%$colour%";
+        $types .= "s";
+    }
+    if ($price != "") {
+        $sql .= " AND price <= ?";
+        $params[] = $price;
+        $types .= "d";
+    }
+
+    $stmt = mysqli_prepare($connection, $sql);
+    if (count($params) > 0) {
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    $cars = [];
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $cars[] = $row;
+        }
+    }
+
+    header('Content-Type: application/json');
+    echo json_encode($cars);
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,16 +65,16 @@
 <div class="navbar">
     <div class="container clearfix">
         <div class="logo">
-            <a href="../index.html">
+            <a href="../index.php">
                 <img src="../images/logo.png" alt="AutoMarket Logo">
             </a>
         </div>
         <ul class="nav-links">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="search.html">Search Cars</a></li>
-            <li><a href="../seller/register.html">Register</a></li>
-            <li><a href="../seller/login.html">Login</a></li>
-            <li><a href="../seller/add-car.html">Add Car</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="search.php">Search Cars</a></li>
+            <li><a href="../seller/register.php">Register</a></li>
+            <li><a href="../seller/login.php">Login</a></li>
+            <li><a href="../seller/add-car.php">Add Car</a></li>
         </ul>
     </div>
 </div>

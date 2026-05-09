@@ -109,6 +109,27 @@
 
 /*----------------------------------------------------------------------------------------------------------------*/
 
+.empty-car-room {
+    margin: 80px auto;
+    padding: 40px;
+    background-color: white;
+    width: 60%;
+    border: 2px dashed black;
+    text-align: center;
+}
+
+.empty-title {
+    color: black;
+    margin-bottom: 20px;
+}
+
+.empty-text {
+    color: gray;
+    font-size: 18px;
+}
+
+/*----------------------------------------------------------------------------------------------------------------*/
+
 /*ipad-hengpin*/
 @media screen and (max-width: 1200px) {
     .inner-container {
