@@ -79,7 +79,7 @@ session_start();
                     while ($car = mysqli_fetch_assoc($result)):
                 ?>
                     <div class="car-item">
-                        <img src="<?php echo !empty($car['image_url']) ? htmlspecialchars($car['image_url']) : 'images/car1.jpg'; ?>" alt="<?php echo htmlspecialchars($car['model']); ?>">
+                        <img src="<?php echo !empty($car['image_url']) ? htmlspecialchars(str_replace('../', '', $car['image_url'])) : 'images/car1.jpg'; ?>" alt="<?php echo htmlspecialchars($car['model']); ?>">
                         <h3><?php echo htmlspecialchars($car['model']); ?></h3>
                         <p>From $<?php echo number_format($car['price']); ?></p>
                         <a href="buyer/detail.php?id=<?php echo $car['car_id']; ?>" class="btn btn-sm">Details</a>
