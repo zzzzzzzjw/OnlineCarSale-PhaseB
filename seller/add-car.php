@@ -78,11 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <img src="../images/logo.png" alt="AutoMarket Logo">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../index.html"> Home </a></li>
-                    <li><a href="../buyer/search.html"> Search Cars </a></li>
-                    <li><a href="../seller/register.html"> Register </a></li>
-                    <li><a href="../seller/login.html"> Login </a></li>
-                    <li><a href="../seller/add-car.html"> Add Car </a></li>
+                    <li><a href="../index.php"> Home </a></li>
+                    <li><a href="../buyer/search.php"> Search Cars </a></li>
+                    <li><a href="../seller/register.php"> Register </a></li>
+                    <li><a href="../seller/login.php"> Login </a></li>
+                    <li><a href="../seller/add-car.php"> Add Car </a></li>
                 </ul>
             </div>
         </div>
