@@ -30,7 +30,6 @@ CREATE TABLE cars (
     model VARCHAR(50) NOT NULL,
     year YEAR NOT NULL,
     price DECIMAL(10,2) NOT NULL,
-    description TEXT,
     image_url VARCHAR(255),
     colour VARCHAR(30),        
     location VARCHAR(100) NOT NULL,
