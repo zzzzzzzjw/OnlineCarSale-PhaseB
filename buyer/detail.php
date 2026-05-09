@@ -19,7 +19,7 @@ $car = mysqli_fetch_assoc($result);
 <div class="navbar">
     <div class="container clearfix">
         <div class="logo">
-            <a href="../index.html">
+            <a href="../index.php">
                 <img src="../images/logo.png" alt="AutoMarket Logo">
             </a>
         </div>
