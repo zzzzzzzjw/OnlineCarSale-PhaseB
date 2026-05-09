@@ -3,8 +3,23 @@
 require_once '../config/db_connect.php';
 session_start();
 
-if (!isset($_SESSION['seller_id'])) {
-    $_SESSION['seller_id'] = 1;
+if (!isset($_SESSION['username'])) {
+    echo "<script>
+            alert('Please login first!');
+            window.location.href='login.php';
+          </script>";
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+$id_query = "select seller_id from sellers where username = '$username'";
+$id_result = mysqli_query($connection, $id_query);
+
+if ($row = mysqli_fetch_assoc($id_result)) {
+    $_SESSION['seller_id'] = $row['seller_id'];
+} else {
+    die("Error: Seller not found in database.");
 }
 
 $error = "";
@@ -51,6 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         
         if (mysqli_query($connection, $sql)) {
             $success = "Car added successfully!";
+
+            echo "<script>
+                    alert('$success');
+                    window.location.href = 'seller.php'; 
+                  </script>";
+            exit();
+
         } else {
             $error = "Database error: " . mysqli_error($connection);
         }
