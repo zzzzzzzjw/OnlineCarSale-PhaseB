@@ -48,7 +48,6 @@ $car = mysqli_fetch_assoc($result);
         <p><strong>Year:</strong> <span><?php echo $car['year']; ?></span></p>
         <p><strong>Location:</strong> <span><?php echo $car['location']; ?></span></p>
         <p><strong>Price:</strong> <span><?php echo $car['price']; ?></span></p>
-        <p><strong>Description:</strong> <span><?php echo $car['description']; ?></span></p>
     
     <div style="text-align: center;">
         <a href="search.php" class="back-link">← Back to Search</a>

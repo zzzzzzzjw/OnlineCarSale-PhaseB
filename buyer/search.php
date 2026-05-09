@@ -2,11 +2,13 @@
 require_once '../config/db_connect.php';
 
 
-if (isset($_GET['model']) || isset($_GET['year'])) {
+if (isset($_GET['model']) || isset($_GET['year']) || isset($_GET['colour']) || isset($_GET['price'])) {
     $model = $_GET['model'] ?? '';
     $year = $_GET['year'] ?? '';
+    $colour = $_GET['colour'] ?? '';
+    $price = $_GET['price'] ?? '';
 
-    $sql = "SELECT car_id, model, colour, year, location, price, image_url, description FROM cars WHERE 1=1";
+    $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
     $params = [];
     $types = "";
 
@@ -20,6 +22,16 @@ if (isset($_GET['model']) || isset($_GET['year'])) {
         $params[] = $year;
         $types .= "s";
     }
+    if ($colour != "") {
+        $sql .= " AND colour LIKE ?";
+        $params[] = "%$colour%";
+        $types .= "s";
+    }
+    if ($price != "") {
+        $sql .= " AND price <= ?";
+        $params[] = $price;
+        $types .= "d";
+    }
 
     $stmt = mysqli_prepare($connection, $sql);
     if (count($params) > 0) {
@@ -29,8 +41,10 @@ if (isset($_GET['model']) || isset($_GET['year'])) {
     $result = mysqli_stmt_get_result($stmt);
 
     $cars = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $cars[] = $row;
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $cars[] = $row;
+        }
     }
 
     header('Content-Type: application/json');

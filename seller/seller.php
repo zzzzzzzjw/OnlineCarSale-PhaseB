@@ -55,7 +55,7 @@ if (!$result) {
             <div class="inner-container">
 
                 <div class="hengxiangzhanshi-text">
-                    <h1 class="hengxiangzhanshi-bigtitle"> Hello<?php echo $_SESSION['username']; ?>! </h1>
+                    <h1 class="hengxiangzhanshi-bigtitle"> Hello <?php echo $_SESSION['username']; ?>! </h1>
                     <p style="color: white;"> Here is your personalized car-room. </p>
                 </div>
 
@@ -75,19 +75,19 @@ if (!$result) {
                 
                 while ($car = mysqli_fetch_assoc($result)) {
                     $car_id = $car['car_id'];
-                    $car_url = "detail.php?id=" . $car_id;
+                    $car_url = "../buyer/detail.php?id=" . $car_id;
             ?>
                     <a href="<?php echo $car_url; ?>" class="car-box" style="text-decoration: none; color: inherit;">
                         
                     <h3 class="car-box-title"> 
                         <?php 
-                        echo $car['brand'] . ' ' . $car['model']; 
+                        echo $car['model']; 
                         ?> 
                     </h3> 
 
                     <p class="car-explaination"> 
                         <?php 
-                        echo mb_substr($car['description'], 0, 30) . '...'; 
+                        echo $car['year']; 
                         ?> 
                     </p>
 

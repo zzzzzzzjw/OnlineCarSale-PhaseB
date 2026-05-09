@@ -71,7 +71,7 @@ session_start();
                 require_once 'config/db_connect.php';
 
                 // Select 4 latest cars for featured display
-                $sql = "SELECT car_id, brand, model, year, price, image_url FROM cars ORDER BY created_at DESC LIMIT 4";
+                $sql = "SELECT car_id, model, year, price, image_url FROM cars ORDER BY created_at DESC LIMIT 4";
                 $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
                 if (mysqli_num_rows($result) > 0):
@@ -79,8 +79,8 @@ session_start();
                     while ($car = mysqli_fetch_assoc($result)):
                 ?>
                     <div class="car-item">
-                        <img src="<?php echo !empty($car['image_url']) ? htmlspecialchars($car['image_url']) : 'images/car1.jpg'; ?>" alt="<?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?>">
-                        <h3><?php echo htmlspecialchars($car['brand'] . ' ' . $car['model']); ?></h3>
+                        <img src="<?php echo !empty($car['image_url']) ? htmlspecialchars($car['image_url']) : 'images/car1.jpg'; ?>" alt="<?php echo htmlspecialchars($car['model']); ?>">
+                        <h3><?php echo htmlspecialchars($car['model']); ?></h3>
                         <p>From $<?php echo number_format($car['price']); ?></p>
                         <a href="buyer/detail.php?id=<?php echo $car['car_id']; ?>" class="btn btn-sm">Details</a>
                     </div>

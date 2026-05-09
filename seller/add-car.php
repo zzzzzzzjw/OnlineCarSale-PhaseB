@@ -61,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
     
     if ($errors == "") {
-        $sql = "INSERT INTO cars (seller_id, model, colour, year, location, price, image_url, description) 
-                VALUES ('$seller_id', '$model', '$colour', '$year', '$location', '$price', '$image', '$description')";
+        $sql = "INSERT INTO cars (seller_id, model, colour, year, location, price, image_url) 
+                VALUES ('$seller_id', '$model', '$colour', '$year', '$location', '$price', '$image')";
         
         if (mysqli_query($connection, $sql)) {
             $success = "Car added successfully!";
