@@ -44,9 +44,14 @@ if (!$result) {
                 <ul class="nav-links">
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../buyer/search.php">Search Cars</a></li>
-                    <li><a href="register.php">Register</a></li>
-                    <li><a href="login.php">Login</a></li>
-                    <li><a href="add-car.php">Add Car</a></li>
+
+                    <?php if (isset($_SESSION['seller_id'])): ?>
+                        <li><a href="seller.php">Seller Page</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="register.php">Register</a></li>
+                        <li><a href="login.php">Login</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
