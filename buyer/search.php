@@ -2,7 +2,12 @@
 require_once '../config/db_connect.php';
 
 
-if (isset($_GET['model']) || isset($_GET['year'])) {
+$model = $_GET['model'] ?? '';
+$year = $_GET['year'] ?? '';
+$colour = $_GET['colour'] ?? '';
+$price = $_GET['price'] ?? '';
+
+if ($model != "" || $year != "" || $colour != "" || $price != "") {
     $model = $_GET['model'] ?? '';
     $year = $_GET['year'] ?? '';
 
