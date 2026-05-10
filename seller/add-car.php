@@ -1,9 +1,92 @@
+<?php
+
+require_once '../config/db_connect.php';
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    echo "<script>
+            alert('Please login first!');
+            window.location.href='login.php';
+          </script>";
+    exit();
+}
+
+$username = $_SESSION['username'];
+
+$id_query = "select seller_id from sellers where username = '$username'";
+$id_result = mysqli_query($connection, $id_query);
+
+if ($row = mysqli_fetch_assoc($id_result)) {
+    $_SESSION['seller_id'] = $row['seller_id'];
+} else {
+    die("Error: Seller not found in database.");
+}
+
+$error = "";
+$success = "";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $colour = $_POST['colour'];
+    $model = $_POST['model'];
+    $year = $_POST['year'];
+    $location = $_POST['location'];
+    $price = $_POST['price'];
+    $image = $_POST['image'];
+    $description = $_POST['description'] ?? "";
+    $seller_id = $_SESSION['seller_id'];
+    
+    if ($image == "") {
+        $image = "../images/logo.png";
+    }
+    if ($description == "") {
+        $description = "Newly listed vehicle.";
+    }
+    
+    $errors = "";
+    
+    if ($model == "") {
+        $errors = $errors . "Model is required. ";
+    }
+    if ($colour == "") {
+        $errors = $errors . "Colour is required. ";
+    }
+    if (strlen($year) != 4) {
+        $errors = $errors . "Year must be 4 digits. ";
+    }
+    if ($location == "") {
+        $errors = $errors . "Location is required. ";
+    }
+    if ($price == "" || $price <= 0) {
+        $errors = $errors . "Price must be a positive number. ";
+    }
+    
+    if ($errors == "") {
+        $sql = "INSERT INTO cars (seller_id, model, colour, year, location, price, image_url) 
+                VALUES ('$seller_id', '$model', '$colour', '$year', '$location', '$price', '$image')";
+        
+        if (mysqli_query($connection, $sql)) {
+            $success = "Car added successfully!";
+
+            echo "<script>
+                    alert('$success');
+                    window.location.href = 'seller.php'; 
+                  </script>";
+            exit();
+
+        } else {
+            $error = "Database error: " . mysqli_error($connection);
+        }
+    } else {
+        $error = $errors;
+    }
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Car - AutoMarket</title>
-    <script src="../js/judge_login.js">  </script>
+    
     <link rel="stylesheet" href="../css/buyer_style.css"> 
     <link rel="stylesheet" href="../css/seller_style.css">
     <link rel="stylesheet" href="../css/style.css">
@@ -17,11 +100,11 @@
                     <img src="../images/logo.png" alt="AutoMarket Logo">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../index.html"> Home </a></li>
-                    <li><a href="../buyer/search.html"> Search Cars </a></li>
-                    <li><a href="../seller/register.html"> Register </a></li>
-                    <li><a href="../seller/login.html"> Login </a></li>
-                    <li><a href="../seller/add-car.html"> Add Car </a></li>
+                    <li><a href="../index.php"> Home </a></li>
+                    <li><a href="../buyer/search.php"> Search Cars </a></li>
+                    <li><a href="../seller/register.php"> Register </a></li>
+                    <li><a href="../seller/login.php"> Login </a></li>
+                    <li><a href="../seller/add-car.php"> Add Car </a></li>
                 </ul>
             </div>
         </div>
@@ -32,8 +115,15 @@
 
     <div class="left-gray-box">
         <h2 class="box-main-title">Add a Car</h2>
-        
-        <form id="AddCarForm" style="margin-top: 20px;">
+             <?php if (!empty($error)): ?>
+    <p style="color: red; text-align: center;"><?php echo $error; ?></p>
+<?php endif; ?>
+
+<?php if (!empty($success)): ?>
+    <p style="color: green; text-align: center;"><?php echo $success; ?></p>
+<?php endif; ?>
+           
+        <form id="AddCarForm" method="post" style="margin-top: 20px;">
             
             <div class="input-field-group">
                 <label>Colour:</label>
@@ -76,6 +166,5 @@
     </div>
 </div>
 <script src="../js/search_function.js"></script>
-<script src="../js/addcar.js"></script>
 </body>
 </html>

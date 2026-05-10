@@ -9,7 +9,7 @@ $price = $_GET['price'] ?? '';
 
 if ($model != "" || $year != "" || $colour != "" || $price != "") {
 
-    $sql = "SELECT car_id, model, colour, year, location, price, image_url, description FROM cars WHERE 1=1";
+    $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
     $params = [];
     $types = "";
 
@@ -41,8 +41,10 @@ if ($price != "") {
     $result = mysqli_stmt_get_result($stmt);
 
     $cars = [];
-    while ($row = mysqli_fetch_assoc($result)) {
-        $cars[] = $row;
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $cars[] = $row;
+        }
     }
 
     header('Content-Type: application/json');
