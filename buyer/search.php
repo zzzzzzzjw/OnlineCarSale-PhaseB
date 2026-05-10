@@ -10,7 +10,6 @@ $price = $_GET['price'] ?? '';
 if ($model != "" || $year != "" || $colour != "" || $price != "") {
     $model = $_GET['model'] ?? '';
     $year = $_GET['year'] ?? '';
-
     $sql = "SELECT car_id, model, colour, year, location, price, image_url, description FROM cars WHERE 1=1";
     $params = [];
     $types = "";
