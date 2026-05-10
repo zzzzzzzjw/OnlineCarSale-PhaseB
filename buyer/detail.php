@@ -1,5 +1,4 @@
 <?php
-session_start(); 
 require_once '../config/db_connect.php';
 
 $car_id = $_GET['id'] ?? 0;
@@ -27,14 +26,9 @@ $car = mysqli_fetch_assoc($result);
         <ul class="nav-links">
             <li><a href="../index.php">Home</a></li>
             <li><a href="search.php">Search Cars</a></li>
-
-            <?php if (isset($_SESSION['seller_id'])): ?>
-                <li><a href="../seller/seller.php">Seller Page</a></li>
-                <li><a href="../seller/logout.php">Logout</a></li>
-            <?php else: ?>
-                <li><a href="../seller/register.php">Register</a></li>
-                <li><a href="../seller/login.php">Login</a></li>
-            <?php endif; ?>
+            <li><a href="../seller/register.php">Register</a></li>
+            <li><a href="../seller/login.php">Login</a></li>
+            <li><a href="../seller/add-car.php">Add Car</a></li>
         </ul>
     </div>
 </div>
