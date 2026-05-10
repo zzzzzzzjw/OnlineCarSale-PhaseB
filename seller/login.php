@@ -65,7 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <li><a href="../buyer/search.php"> Search Cars </a></li>
                     <li><a href="register.php"> Register </a></li>
                     <li><a href="login.php"> Login </a></li>
-                    <li><a href="add-car.php"> Add Car </a></li>
                 </ul>
             </div>
         </div>
