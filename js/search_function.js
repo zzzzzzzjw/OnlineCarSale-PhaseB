@@ -5,7 +5,7 @@ function goToDetail(carId) {
 function loadRecommendations() {
     if (!document.getElementById('recommendContainer')) return;
     
-    fetch('search.php?model=')
+    fetch('search.php?action=get_all')
         .then(response => response.json())
         .then(data => {
             var html = '';
