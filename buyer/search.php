@@ -23,7 +23,16 @@ if ($model != "" || $year != "" || $colour != "" || $price != "") {
         $params[] = $year;
         $types .= "s";
     }
-
+    if ($colour != "") {
+    $sql .= " AND colour LIKE ?";
+    $params[] = "%$colour%";
+    $types .= "s";
+    }
+if ($price != "") {
+    $sql .= " AND price <= ?";
+    $params[] = $price;
+    $types .= "s";
+    }
     $stmt = mysqli_prepare($connection, $sql);
     if (count($params) > 0) {
         mysqli_stmt_bind_param($stmt, $types, ...$params);
