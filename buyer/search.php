@@ -2,11 +2,12 @@
 require_once '../config/db_connect.php';
 
 
-if (isset($_GET['model']) || isset($_GET['year']) || isset($_GET['colour']) || isset($_GET['price'])) {
-    $model = $_GET['model'] ?? '';
-    $year = $_GET['year'] ?? '';
-    $colour = $_GET['colour'] ?? '';
-    $price = $_GET['price'] ?? '';
+$model = $_GET['model'] ?? '';
+$year = $_GET['year'] ?? '';
+$colour = $_GET['colour'] ?? '';
+$price = $_GET['price'] ?? '';
+
+if ($model != "" || $year != "" || $colour != "" || $price != "") {
 
     $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
     $params = [];
@@ -23,16 +24,15 @@ if (isset($_GET['model']) || isset($_GET['year']) || isset($_GET['colour']) || i
         $types .= "s";
     }
     if ($colour != "") {
-        $sql .= " AND colour LIKE ?";
-        $params[] = "%$colour%";
-        $types .= "s";
+    $sql .= " AND colour LIKE ?";
+    $params[] = "%$colour%";
+    $types .= "s";
     }
-    if ($price != "") {
-        $sql .= " AND price <= ?";
-        $params[] = $price;
-        $types .= "d";
+if ($price != "") {
+    $sql .= " AND price <= ?";
+    $params[] = $price;
+    $types .= "s";
     }
-
     $stmt = mysqli_prepare($connection, $sql);
     if (count($params) > 0) {
         mysqli_stmt_bind_param($stmt, $types, ...$params);
