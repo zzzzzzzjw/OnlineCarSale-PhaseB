@@ -1,4 +1,5 @@
 <?php
+session_start(); // 开启 session，以便导航栏判断登录状态
 require_once '../config/db_connect.php';
 
 
@@ -6,9 +7,8 @@ $model = $_GET['model'] ?? '';
 $year = $_GET['year'] ?? '';
 $colour = $_GET['colour'] ?? '';
 $price = $_GET['price'] ?? '';
-$action = $_GET['action'] ?? '';
 
-if ($model != "" || $year != "" || $colour != "" || $price != "" || $action === 'get_all') {
+if ($model != "" || $year != "" || $colour != "" || $price != "") {
 
     $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
     $params = [];
@@ -73,9 +73,14 @@ if ($price != "") {
         <ul class="nav-links">
             <li><a href="../index.php">Home</a></li>
             <li><a href="search.php">Search Cars</a></li>
-            <li><a href="../seller/register.php">Register</a></li>
-            <li><a href="../seller/login.php">Login</a></li>
-            <li><a href="../seller/add-car.php">Add Car</a></li>
+
+            <?php if (isset($_SESSION['seller_id'])): ?>
+                <li><a href="../seller/seller.php">Seller Page</a></li>
+                <li><a href="../seller/logout.php">Logout</a></li>
+            <?php else: ?>
+                <li><a href="../seller/register.php">Register</a></li>
+                <li><a href="../seller/login.php">Login</a></li>
+            <?php endif; ?>
         </ul>
     </div>
 </div>

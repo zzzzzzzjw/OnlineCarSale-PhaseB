@@ -32,14 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $location = $_POST['location'];
     $price = $_POST['price'];
     $image = $_POST['image'];
-    $description = $_POST['description'] ?? "";
     $seller_id = $_SESSION['seller_id'];
     
     if ($image == "") {
         $image = "../images/logo.png";
-    }
-    if ($description == "") {
-        $description = "Newly listed vehicle.";
     }
     
     $errors = "";
@@ -100,11 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <img src="../images/logo.png" alt="AutoMarket Logo">
                 </div>
                 <ul class="nav-links">
-                    <li><a href="../index.php"> Home </a></li>
-                    <li><a href="../buyer/search.php"> Search Cars </a></li>
-                    <li><a href="../seller/register.php"> Register </a></li>
-                    <li><a href="../seller/login.php"> Login </a></li>
-                    <li><a href="../seller/add-car.php"> Add Car </a></li>
+                    <li><a href="../index.php">Home</a></li>
+                    <li><a href="../buyer/search.php">Search Cars</a></li>
+
+                    <?php if (isset($_SESSION['seller_id'])): ?>
+                        <li><a href="seller.php">Seller Page</a></li>
+                        <li><a href="logout.php">Logout</a></li>
+                    <?php else: ?>
+                        <li><a href="register.php">Register</a></li>
+                        <li><a href="login.php">Login</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
