@@ -2,11 +2,13 @@
 require_once '../config/db_connect.php';
 
 
-if (isset($_GET['model']) || isset($_GET['year']) || isset($_GET['colour']) || isset($_GET['price'])) {
-    $model = $_GET['model'] ?? '';
-    $year = $_GET['year'] ?? '';
-    $colour = $_GET['colour'] ?? '';
-    $price = $_GET['price'] ?? '';
+$model = $_GET['model'] ?? '';
+$year = $_GET['year'] ?? '';
+$colour = $_GET['colour'] ?? '';
+$price = $_GET['price'] ?? '';
+
+if ($model != "" || $year != "" || $colour != "" || $price != "") {
+
 
     $sql = "SELECT car_id, model, colour, year, location, price, image_url FROM cars WHERE 1=1";
     $params = [];
