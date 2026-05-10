@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($row = mysqli_fetch_array($result)) {
          if (password_verify($password_hash, $row['password_hash'])) {
             $_SESSION['username'] = $username;
+            $_SESSION['seller_id'] = $row['seller_id']; 
 
             echo "<script>
                     alert('Login successful! Welcome, " . $username . "');
