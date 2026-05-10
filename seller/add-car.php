@@ -152,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
             <div class="input-field-group">
                 <label>Image URL:</label>
-                <input type="text" name="image" class="box-input-field" placeholder="../images/car1.jpg">
+                <input type="text" name="image" required class="box-input-field" placeholder="../images/car1.jpg">
             </div>
 
             <input type="submit" value="Add" style="background-color: black; color: white; padding: 15px 50px;">
