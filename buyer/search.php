@@ -6,7 +6,6 @@ $model = $_GET['model'] ?? '';
 $year = $_GET['year'] ?? '';
 $colour = $_GET['colour'] ?? '';
 $price = $_GET['price'] ?? '';
-
 $action = $_GET['action'] ?? '';
 
 if ($model != "" || $year != "" || $colour != "" || $price != "" || $action === 'get_all') {
